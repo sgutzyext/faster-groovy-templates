@@ -39,8 +39,9 @@ public class GTJavaExtensionMethodResolver1x implements GTJavaExtensionMethodRes
 
                 methodName2ClassMapping = new HashMap<String, Class>();
                 for ( Class clazz : extensionsClassnames) {
-                    for ( Method method : clazz.getDeclaredMethods()) {
-                        methodName2ClassMapping.put(method.getName(), clazz);
+                    for ( Method method : clazz.getMethods()) {
+                        // We may want to force this to ignore Object
+                        methodName2ClassMapping.put(method.getName(), method.getDeclaringClass());
                     }
                 }
             }
